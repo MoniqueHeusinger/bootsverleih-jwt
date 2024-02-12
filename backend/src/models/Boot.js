@@ -8,7 +8,7 @@ const reservierungSchema = new mongoose.Schema(
     enddatum: { type: Date, required: false },
     reservierungsnummer: { type: Number, required: false },
     // neu: für BasicAuth -->
-    userId: { type: mongoose.Types.ObjectId, required: true },
+    userId: { type: mongoose.Types.ObjectId, required: false },
   },
   { _id: false, timestamps: false }
 );
