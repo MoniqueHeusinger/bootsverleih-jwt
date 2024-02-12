@@ -1,0 +1,17 @@
+To Dos - Frontend
+==================
+
+- Page Reservierungen: Button "add Reservierung" hinzufügen oder: Button mit Link zu Bootsübersicht, um ein Boot zu Reservierungen
+
+---> Buttongröße anpassen
+
+
+- Reservierungsübersicht: Name/Username von Reservierenden
+
+
+
+
+
+Version 2.0.
+- Page Reservierungen soll nur für Admin sichtbar und editierbar sein
+--> User sieht nur Bootsübersicht, ggf. eigene Seite für Reservierungens

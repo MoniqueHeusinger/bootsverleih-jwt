@@ -1,0 +1,42 @@
+.boat-card {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 150px auto;
+  background-color: var(--mediumblue);
+  border-radius: 25px;
+  color: white;
+}
+.boat-card img {
+  width: 100%;
+  object-fit: cover;
+  max-height: 150px;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+}
+.boat-card img:hover {
+  scale: 1.015;
+  transition: 0.2s;
+}
+.boat-card .card-text-container {
+  padding: 20px;
+  text-align: center;
+}
+.boat-card .card-text-container .boot-name {
+  font-family: "Pacifico";
+  letter-spacing: 1.5px;
+  font-size: 1.5rem;
+}
+.boat-card .card-text-container .boot-typ {
+  margin-block: 5px;
+  font-family: "Maven-Pro-Bd";
+  font-size: 1.2rem;
+}
+.boat-card .card-text-container .baujahr {
+  margin-block: 5px 20px;
+  font-size: 1rem;
+}
+.boat-card .card-text-container .btn {
+  margin: 0.5vh auto;
+}
+
+/*# sourceMappingURL=BootCard.css.map */

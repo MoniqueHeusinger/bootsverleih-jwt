@@ -1,0 +1,45 @@
+.boat-card {
+  display: grid;
+  grid-template-columns: 30% 50% 20%;
+  grid-template-rows: 150px;
+
+  background-color: var(--mediumblue);
+  border-radius: 25px;
+  color: white;
+
+  // Boot-Bild
+  img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 150px;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    // &:hover {
+    //   scale: 1.015;
+    //   transition: 0.2s;
+    // }
+  }
+
+  // Boot-Beschreibung
+  .card-text-container {
+    padding: 20px;
+    text-align: center;
+
+    .boot-name {
+      font-family: "Pacifico";
+      letter-spacing: 1.5px;
+      font-size: 1.5rem;
+    }
+
+    .boot-typ {
+      margin-block: 5px;
+      font-family: "Maven-Pro-Bd";
+      font-size: 1.2rem;
+    }
+
+    .baujahr {
+      margin-block: 5px 20px;
+      font-size: 1rem;
+    }
+  }
+}

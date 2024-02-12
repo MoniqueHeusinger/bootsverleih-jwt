@@ -1,0 +1,51 @@
+.login-card {
+    margin: 50px auto 30px auto;
+    padding-block: 40px 20px;
+    width: 280px;
+    display: grid;
+    grid-template-columns: 300px;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
+    border: 6px solid var(--mediumblue);
+
+    // Label + Inputfield
+    .login-data-container {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+
+        label {
+            font-weight: 900;
+        }
+
+        input {
+            width: 200px;
+            height: 25px;
+            padding-left: 5px;
+            border: 1px solid var(--mediumblue);
+            border-radius: 5px;
+
+            // --------- funktioniert nicht ------------
+            &:focus {
+                border: 1px solid var(--mediumblue);
+                outline: none;
+                background-color: var(--mediumblue-transparent);
+            }
+        }
+    }
+}
+
+.login-message-style {
+    margin-bottom: 10px;
+    font-family: "Maven-Pro-Bd";
+    text-align: center;
+    font-style: italic;
+}
+
+.login-message-success {
+    color: green;
+}
+
+.login-message-error {
+    color: red;
+}

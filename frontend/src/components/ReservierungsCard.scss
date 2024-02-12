@@ -1,0 +1,21 @@
+.reservierungen-card {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 2fr 2fr 4fr 1fr;
+    grid-template-rows: 60px;
+
+    p {
+        padding: 10px 20px;
+        // border-bottom: 2px dashed var(--mediumpink);
+        align-self: center;
+    }
+
+    img {
+        padding: 3px;
+        width: 30px;
+        align-self: center;
+        justify-self: center;
+        background-color: var(--mediumpink);
+        border-radius: 7px;
+    }
+}

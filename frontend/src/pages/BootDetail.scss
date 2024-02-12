@@ -1,0 +1,29 @@
+.content-wrapper {
+  form {
+    text-align: center;
+    div {
+      input {
+        display: block;
+        margin: 1vh auto;
+      }
+    }
+    button {
+      margin: 0.5vh auto;
+    }
+  }
+  .bootDetails-wrapper {
+    article {
+      img {
+        max-width: 100%;
+        max-height: 60vh;
+        margin: 0 auto;
+      }
+      div {
+        text-align: center;
+      }
+      button {
+        margin: 1vh auto;
+      }
+    }
+  }
+}

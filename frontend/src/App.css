@@ -1,0 +1,130 @@
+@font-face {
+  font-family: "Pacifico";
+  src: url("./assets/font/Pacifico-Regular.ttf");
+}
+@font-face {
+  font-family: "Maven-Pro";
+  src: url("./assets/font/MavenPro-Regular.ttf");
+}
+@font-face {
+  font-family: "Maven-Pro-Bd";
+  src: url("./assets/font/MavenPro-Bold.ttf");
+}
+:root {
+  --lightblue: #eff7f6;
+  --mediumblue: #7bdff2;
+  --darkblue: #142022;
+  --lightpink: #f7d6e0;
+  --mediumpink: #f2b5d4;
+  --darkpink: #bd3c7d;
+  --aquablue: #b2f7ef;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--lightblue);
+  font-family: "Maven-Pro";
+  color: white;
+}
+body a {
+  color: inherit;
+  text-decoration: none;
+  text-transform: lowercase;
+}
+body p {
+  margin: 0;
+}
+body main {
+  display: grid;
+  grid-template-columns: 100px auto;
+  grid-template-rows: 20% 40% 40%;
+}
+body main .nav {
+  grid-column: 1/2;
+  grid-row: 1/4;
+}
+body main .header {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+body main .header h1 {
+  margin: 0 auto;
+  padding: 70px 50px 30px 50px;
+  width: fit-content;
+  height: fit-content;
+  border-bottom: 4px solid var(--mediumblue);
+  font-family: "Pacifico";
+  color: var(--darkblue);
+  font-size: 3rem;
+  text-align: center;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+body main .content-wrapper {
+  grid-column: 2/3;
+  grid-row: 2/4;
+  padding-inline: 50px;
+  color: var(--darkblue);
+}
+body main .content-wrapper h2 {
+  font-family: "Maven-Pro-Bd";
+  font-size: 2.5rem;
+  text-align: center;
+  font-style: italic;
+}
+body main .content-wrapper .boat-card-container {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+  gap: 50px;
+  justify-content: center;
+}
+body main .content-wrapper .reservierungen-card-container {
+  margin-top: 80px;
+}
+body main .content-wrapper .reservierungen-card-container .reservierungen-card-headline {
+  display: grid;
+  grid-template-columns: 2fr 2fr 4fr 1fr;
+  grid-template-rows: 60px;
+  background-color: var(--mediumblue);
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  color: white;
+}
+body main .content-wrapper .reservierungen-card-container .reservierungen-card-headline p {
+  padding-left: 20px;
+  align-self: center;
+  font-family: "Maven-Pro-Bd";
+  font-size: 1.3rem;
+}
+body main .content-wrapper .btn {
+  padding: 10px 30px;
+  display: block;
+  font-family: "Maven-Pro-Bd";
+  color: white;
+  font-size: 1.1rem;
+  text-align: center;
+  letter-spacing: 1px;
+  background-color: var(--mediumpink);
+  border: 0px solid transparent;
+  border-radius: 7px;
+  transition: 0.3s;
+  text-shadow: 1px 1px rgb(110, 110, 110);
+}
+body main .content-wrapper .btn:hover {
+  background-color: var(--darkpink);
+}
+body main .content-wrapper .btn-flex {
+  margin: 80px auto 0px auto;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+body main .content-wrapper .btn-icon {
+  margin-right: 10px;
+  width: 40px;
+}
+
+/*# sourceMappingURL=App.css.map */

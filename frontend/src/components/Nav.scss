@@ -1,0 +1,38 @@
+nav {
+  margin-top: 20px;
+  padding: 50px 10px 0 10px;
+  width: 80px;
+  // ===== Fix me: ======
+  // Navbar-Höhe soll immer mind. 100% vom Browserfenster sein - ohne Scrollbalken
+  height: 80vh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--mediumblue);
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+
+  // Navigation - Icons
+  // >> Dashboard/Home (Compass)
+  .nav-link-dashboard {
+    img {
+      width: 60px;
+    }
+  }
+
+  // >> Bootsübersicht (Boot), >> Reservierungen (Kalender)
+  .nav-container-middle {
+    flex-grow: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    img {
+      width: 60px;
+    }
+  }
+}

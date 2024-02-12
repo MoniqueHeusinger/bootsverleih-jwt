@@ -1,0 +1,30 @@
+nav {
+  margin-top: 20px;
+  padding: 50px 10px 0 10px;
+  width: 80px;
+  height: 80vh;
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--mediumblue);
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+nav .nav-link-dashboard img {
+  width: 60px;
+}
+nav .nav-container-middle {
+  flex-grow: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+nav .nav-container-middle img {
+  width: 60px;
+}
+
+/*# sourceMappingURL=Nav.css.map */
