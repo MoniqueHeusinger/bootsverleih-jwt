@@ -1,11 +1,18 @@
 .boat-card {
   display: grid;
-  grid-template-columns: 30% 50% 20%;
+  grid-template-columns: 30% 55% 15%;
   grid-template-rows: 150px;
 
   background-color: var(--mediumblue);
   border-radius: 25px;
   color: white;
+  box-shadow: 10px 14px 24px -13px rgba(20, 32, 34, 1);
+  transition: 0.4s;
+
+  &:hover {
+    scale: 1.05;
+    transition: 0.2s;
+  }
 
   // Boot-Bild
   img {
@@ -14,16 +21,12 @@
     max-height: 150px;
     border-bottom-left-radius: 25px;
     border-top-left-radius: 25px;
-    // &:hover {
-    //   scale: 1.015;
-    //   transition: 0.2s;
-    // }
   }
 
   // Boot-Beschreibung
   .card-text-container {
-    padding: 20px;
-    text-align: center;
+    padding: 5px 24px;
+    text-align: left;
 
     .boot-name {
       font-family: "Pacifico";
@@ -40,6 +43,28 @@
     .baujahr {
       margin-block: 5px 20px;
       font-size: 1rem;
+    }
+  }
+
+  // Action-Container mit Buttons (reservieren, login...)
+  .action-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    // Button
+    .btn {
+      margin-bottom: 0px;
+    }
+
+    .btn-icon {
+      margin-right: 0px;
+      img {
+        width: 36px;
+      }
     }
   }
 }
