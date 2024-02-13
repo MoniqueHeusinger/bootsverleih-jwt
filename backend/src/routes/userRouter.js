@@ -1,7 +1,32 @@
 import express from "express";
 import { UserService } from "../services/index.js";
+import { doJwtAuth } from "../middleware/doJwtAuth.js";
 
 const userRouter = express.Router();
+
+// neu für refreshToken --> (new) accessToken (EXCHANGE 🤝)
+userRouter.post(
+  "/refreshToken",
+  doJwtAuth, // validiere den Token in headers.authorization
+  async function postRefreshTokenCtrl(req, res) {
+    try {
+      if (req.verifiedUserClaims.type !== "refresh") {
+        throw new Error("Token must be of type 'refresh'");
+      }
+      // ab hier: refreshToken ist valide
+      const authenticatedUserId = req.verifiedUserClaims.sub;
+      const result = await UserService.refreshToken(authenticatedUserId);
+      res.json({ success: true, result });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        success: false,
+        error,
+        message: error.message || "Could not register user",
+      });
+    }
+  }
+);
 
 // neu: für BasicAuth:
 userRouter.post(

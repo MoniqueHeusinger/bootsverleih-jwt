@@ -6,6 +6,7 @@ import { toggleReservierung } from "./toggleReservierung.js";
 import { editBoot } from "./editBoot.js";
 import { registerUser } from "./registerUser.js";
 import { loginUser } from "./loginUser.js";
+import { refreshToken } from "./refreshToken.js";
 
 export const BooteService = {
   getAllBoote,
@@ -18,4 +19,5 @@ export const BooteService = {
 export const UserService = {
   registerUser,
   loginUser,
+  refreshToken,
 };
