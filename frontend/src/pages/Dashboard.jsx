@@ -2,9 +2,10 @@ import "./Dashboard.scss";
 import { useEffect, useState } from "react";
 import { backendUrl } from "../api";
 import Nav from "../components/Nav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import LogoutButton from "../components/LogoutButton";
 
-const Dashboard = () => {
+const Dashboard = ({ authorization, onLogout }) => {
   const [alleBoote, setAlleBoote] = useState([]);
 
   // Anzahl aller Boote
@@ -41,6 +42,8 @@ const Dashboard = () => {
   const verfuegbareBoote = alleBoote.length - besetzteBoote.length;
   console.log("verfügbare Boote: ", verfuegbareBoote);
 
+  //const navigate = useNavigate();  // brauche ich aktuell noch nicht
+
   return (
     <>
       <Nav />
@@ -49,6 +52,12 @@ const Dashboard = () => {
         <h2>Dashboard</h2>
 
         <section className="dashboard-card-container">
+          {authorization && <LogoutButton onLogout={onLogout} />}
+          {!authorization ? (
+            <Link to="/login" className="btn">
+              login
+            </Link>
+          ) : null}
           <article className="dashboard-card">
             <h3>
               Aktuelle <br />

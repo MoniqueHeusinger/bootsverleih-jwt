@@ -27,15 +27,14 @@ function calcRefreshTokenAfterMs(token) {
 }
 
 // Funktion für den eigentlichen SilentRefresh im Hintergrund
-async function doSilentRefresh(refreshToken) {
+export async function doSilentRefresh() {
   try {
     const response = await fetch(backendUrl + "/api/users/refreshToken", {
       method: "POST",
-      headers: { authorization: `Bearer ${refreshToken}` },
+      credentials: "include", // nimm die httpOnly Cookies und sende sie in der req mit
     });
 
     const { success, result, error, message } = await response.json();
-    console.log(success, result, error, message);
     if (!success) {
       console.log(error);
       console.log(message);
@@ -49,11 +48,7 @@ async function doSilentRefresh(refreshToken) {
   }
 }
 
-export function silentRefreshLoop(
-  currentAccessToken,
-  refreshToken,
-  onSilentRefreshDoneCb
-) {
+export function silentRefreshLoop(currentAccessToken, onSilentRefreshDoneCb) {
   // abwarten, zeit: calcRefreshTokenAfterMs(accessToken)
   const delay = calcRefreshTokenAfterMs(currentAccessToken);
   console.log("delaying silent refresh to ", delay, "ms");
@@ -61,17 +56,16 @@ export function silentRefreshLoop(
   setTimeout(async () => {
     // fetch refresh endpoint mit refreshToken --> newAccessToken
     console.log("doing silent refresh...");
-    const newAccessToken = await doSilentRefresh(refreshToken);
-    console.log("done silent refresh: ", {
-      currentAccessToken,
-      newAccessToken,
-      refreshToken,
-    }); // diese Schreibweise bewirkt, dass die key und value in der Konsole zusammen ausgegeben werden --> Alternative zu: console.log("wert1: " + wert1)
+    const newAccessToken = await doSilentRefresh();
+    console.log(
+      "silent refresh success, token length: ",
+      newAccessToken?.length
+    );
 
     onSilentRefreshDoneCb(newAccessToken);
 
     // loop starten
     // doSilentRefresh auch für newAccessToken!
-    silentRefreshLoop(newAccessToken, refreshToken, onSilentRefreshDoneCb);
+    silentRefreshLoop(newAccessToken, onSilentRefreshDoneCb);
   }, delay);
 }

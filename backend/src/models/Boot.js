@@ -1,4 +1,3 @@
-// Hier kommt Boot-Schema (=Domain-Layer)
 import mongoose, { mongo } from "mongoose";
 
 const reservierungSchema = new mongoose.Schema(

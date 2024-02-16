@@ -36,7 +36,6 @@ const Login = ({ onLoginSuccess }) => {
         // neu für refreshToken
         silentRefreshLoop(
           result.tokens.accessToken,
-          result.tokens.refreshToken,
           function onSilentRefreshDoneCallback(newAccessToken) {
             const authorization = `Bearer ${newAccessToken}`;
             onLoginSuccess(authorization, result.user); // update authorization state

@@ -6,6 +6,7 @@ export async function loginUser({ email, password }) {
   // 1. login credentials validieren
   const foundUser = await User.findOne({ email });
   if (!foundUser) throw new Error("User with this email doesn't exist");
+  if (!foundUser.emailVerified) throw new Error("Email still not verified");
 
   // check password
   const passwordHash = hashPassword(password, foundUser.passwordSalt);

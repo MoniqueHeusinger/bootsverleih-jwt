@@ -10,6 +10,8 @@ import BoatDetail from "./pages/BoatDetail";
 import Register from "./pages/Register";
 import { useState } from "react";
 import Login from "./pages/Login";
+import LoadingWrapper from "./components/LoadingWrapper";
+import VerifyEmail from "./pages/VerifyEmail";
 
 function App() {
   // neu: BasicAuth
@@ -26,17 +28,50 @@ function App() {
             <Route
               path="/boatlist"
               element={
-                <Bootsuebersicht
-                  authorization={authorization} // neu: BasicAuth
-                  userProfileInfo={userProfileInfo} // neu: BasicAuth
-                />
+                <LoadingWrapper
+                  authorization={authorization}
+                  saveAuthorization={(auth) => setAuthorization(auth)}
+                >
+                  <Bootsuebersicht
+                    authorization={authorization} // neu: BasicAuth
+                    userProfileInfo={userProfileInfo} // neu: BasicAuth
+                    onLogout={() => setAuthorization(null)} // neu für jwtAuth
+                  />
+                </LoadingWrapper>
               }
             />
-            <Route path="/reservierungen" element={<Reservierungen />} />
-            <Route path="/add-boot" element={<AddNewBootForm />} />
+            <Route
+              path="/reservierungen"
+              element={
+                // <LoadingWrapper
+                //   authorization={authorization}
+                //   saveAuthorization={(auth) => setAuthorization(auth)}
+                // >
+                <Reservierungen />
+                // </LoadingWrapper>
+              }
+            />
+            <Route
+              path="/add-boot"
+              element={
+                <LoadingWrapper
+                  authorization={authorization}
+                  saveAuthorization={(auth) => setAuthorization(auth)}
+                >
+                  <AddNewBootForm />
+                </LoadingWrapper>
+              }
+            />
             <Route
               path="/add-reservierung/:bootId"
-              element={<AddReservierung />}
+              element={
+                <LoadingWrapper
+                  authorization={authorization}
+                  saveAuthorization={(auth) => setAuthorization(auth)}
+                >
+                  <AddReservierung />
+                </LoadingWrapper>
+              }
             />
             <Route path="/boat-detail/:bootId" element={<BoatDetail />} />
 
@@ -53,6 +88,7 @@ function App() {
             />
 
             <Route path="/register" element={<Register />} />
+            <Route path="/verify-email/:userId" element={<VerifyEmail />} />
           </Routes>
         </BrowserRouter>
       </main>
