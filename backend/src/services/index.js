@@ -7,6 +7,8 @@ import { editBoot } from "./editBoot.js";
 import { registerUser } from "./registerUser.js";
 import { loginUser } from "./loginUser.js";
 import { refreshToken } from "./refreshToken.js";
+import { resendEmail } from "./resendEmail.js";
+import { verifyEmail } from "./verifyEmail.js";
 
 export const BooteService = {
   getAllBoote,
@@ -20,4 +22,6 @@ export const UserService = {
   registerUser,
   loginUser,
   refreshToken,
+  resendEmail,
+  verifyEmail,
 };

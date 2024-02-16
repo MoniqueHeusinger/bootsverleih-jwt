@@ -1,6 +1,46 @@
+import { useState } from "react";
 import Nav from "../components/Nav";
+import { useNavigate } from "react-router-dom";
+import { backendUrl } from "../api";
 
-const register = () => {
+const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
+
+  const registerUser = (event) => {
+    event.preventDefault();
+    if (!name || !email || !password) {
+      setErrorMessage("Alle Felder müssen ausgefüllt werden");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Fehler bei Passwortwiederholung! Bitte Eingabe prüfen.");
+      return;
+    }
+
+    fetch(backendUrl + "/api/users/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    })
+      .then((res) => res.json())
+      .then(({ success, result, message }) => {
+        if (!success)
+          return setErrorMessage(message || "Registrierung fehlgeschlagen");
+        console.log("hier: ", result);
+        setErrorMessage(""); // reset error message after success
+        // setSuccessMessage("Account created, please verify your email!");
+        navigate("/verify-email/" + result._id);
+      });
+  };
+
   return (
     <>
       <Nav />
@@ -15,6 +55,7 @@ const register = () => {
               name="name"
               id="name"
               placeholder="Vorname Nachname"
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
 
@@ -26,6 +67,7 @@ const register = () => {
               name="email"
               id="email"
               placeholder="E-Mail-Adresse"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -35,8 +77,9 @@ const register = () => {
             <input
               type="password"
               name="password"
-              id="password"
+              id="passwordConfirmation"
               placeholder="Passwort (min. 4 Zeichen)"
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
@@ -48,6 +91,7 @@ const register = () => {
               name="password"
               id="password"
               placeholder="Passwort (min. 4 Zeichen)"
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
 
@@ -56,7 +100,7 @@ const register = () => {
             <p>Bootsführerschein vorhanden?</p>
             <input
               type="checkbox"
-              name="boatLicenseTrue"
+              name="boatLicense"
               id="boatLicenseTrue"
               value={true}
             />
@@ -75,10 +119,18 @@ const register = () => {
             <label htmlFor="profilePicture">Profilbild</label>
             <input type="file" name="profilePicture" id="profilePicture" />
           </div>
+
+          <div className="register-data-container">
+            <button className="btn" onClick={registerUser}>
+              konto anlegen
+            </button>
+          </div>
         </form>
+
+        <p>{errorMessage}</p>
       </section>
     </>
   );
 };
 
-export default register;
+export default Register;
