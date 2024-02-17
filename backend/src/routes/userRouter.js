@@ -86,13 +86,36 @@ userRouter.post(
       res.json({ success: true });
     } catch (error) {
       console.log(error);
-      res
-        .status(500)
-        .json({
-          success: false,
-          error,
-          message: error.message || "Could not logout user",
-        });
+      res.status(500).json({
+        success: false,
+        error,
+        message: error.message || "Could not logout user",
+      });
+    }
+  }
+);
+
+// E-Mail-Verifizierung mit sixDigitCode
+userRouter.post(
+  "/verifyEmail",
+  express.json(), // body parser, für die user infos im body
+  async function postVerifyEmailCtrl(req, res) {
+    try {
+      const userId = req.body.userId;
+      const sixDigitCode = req.body.sixDigitCode;
+
+      const result = await UserService.verifyEmail({
+        userId,
+        sixDigitCode, // muss zurvor in seinem user-document in der DB gespeichert sein
+      });
+      res.json({ success: true, result });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        success: false,
+        error,
+        message: error.message || "Could not register user",
+      });
     }
   }
 );

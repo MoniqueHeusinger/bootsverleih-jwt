@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { backendUrl } from "../api";
+import Nav from "../components/Nav";
+import "./VerifyEmail.scss";
 
 const VerifyEmail = () => {
   const [sixDigitCode, setSixDigitCode] = useState("");
@@ -9,7 +11,7 @@ const VerifyEmail = () => {
 
   const { userId } = useParams();
 
-  async function verifyEmail(even) {
+  async function verifyEmail(event) {
     event.preventDefault();
     if (!sixDigitCode) {
       setErrorMessage(
@@ -27,11 +29,15 @@ const VerifyEmail = () => {
       .then(({ success, result, message }) => {
         if (!success)
           return setErrorMessage(message || "E-Mail verification failed");
-        console.log({ result });
+        // console.log({ result });
+
         setErrorMessage("");
         setSuccessMessage(
           "Die Verifizierung deines Kontos war erfolgreich! Du kanns dich jetzt einloggen."
         );
+        setTimeout(() => {
+          Navigate("/");
+        }, 5000);
       });
   }
 
@@ -52,42 +58,51 @@ const VerifyEmail = () => {
 
   return (
     <>
+      <Nav />
       <section className="content-wrapper">
-        <h2>E-Mail Verifizierung</h2>
-        <p style={{ textAlign: "center" }}>
-          Fast geschafft! Dein Nutzerkonto wurde erfolgreich erstellt.
-        </p>
-        <p>
-          Bitte gib als letzten Schritt noch den 6-stelligen Code aus deiner
-          Bestätigungs-Mail ein.
-        </p>
+        <h2>Land in Sicht, Matrose!</h2>
+        <article className="verify-email-container">
+          <p className="verify-email-text">
+            Dein Nutzerkonto wurde erfolgreich erstellt.
+          </p>
+          <p className="verify-email-text">
+            Bitte gib als letzten Schritt noch den
+            <span className="bold"> 6-stelligen Code</span> aus deiner
+            Bestätigungs-Mail ein.
+          </p>
 
-        <form>
-          <div>
-            <label htmlFor="sixDigitCode">
-              6-stelligen Code hier eingeben:
-            </label>
+          <form>
             <input
               type="text"
               id="sixDigitCode"
+              maxLength={6}
               value={sixDigitCode}
               onChange={(e) => setSixDigitCode(e.target.value)}
             />
+
+            <button className="btn" onClick={verifyEmail}>
+              registrierung abschließen
+            </button>
+
+            {/* Error Message */}
+            <p>{errorMessage}</p>
+            {/* Success Message */}
+            <p>{successMessage}</p>
+          </form>
+
+          <div className="resend-mail-container">
+            <p>
+              <span className="bold">
+                Probleme?
+                <br />
+              </span>{" "}
+              Fordere hier einen neuen Code an:
+            </p>
+            <button className="btn" onClick={resendEmail}>
+              code erneut anfordern
+            </button>
           </div>
-
-          <button className="btn" onClick={verifyEmail}>
-            registrierung abschließen
-          </button>
-
-          {/* Error Message */}
-          <p>{errorMessage}</p>
-          {/* Success Message */}
-          <p>{successMessage}</p>
-        </form>
-
-        <button className="btn" onClick={resendEmail}>
-          neuen coden anfordern
-        </button>
+        </article>
       </section>
     </>
   );

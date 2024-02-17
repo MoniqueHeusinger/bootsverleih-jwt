@@ -27,27 +27,19 @@ export async function registerUser({
   });
   await user.save();
 
-  //   const nameArr = name.split(" ");
-  //   const vorname = nameArr[0];
-
-  //   await sendEmail({
-  //     to: "example@mail.com",
-  //     subject: "Kontobetätigung",
-  //     text: `Hallo ${vorname},<br>
-  // vielen Dank für die Registrierung bei Serafina's Dreamboats.<br>
-  // Zum Abschluss des Registrierungsvorgangs ist nur noch 1 Schritt notwendig:
-  // --> Klicke auf folgenden Link und bestätige damit deine Anmeldung: <a href="http://localhost:3001/api/boote" style="margin-top:10px; display:inline-block; background-color:blue; color:white; border:none; border-radius:20px; padding:5px 20px;">hier klicken</a><br><br>
-  // Viel Spaß auf unserer Seite!<br>
-  // Dein Team von Serafina's Dreamboats`,
-  //   });
-
   await sendVerificationEmail(user);
 
   return userToProfileInfo(user);
 }
 
-function userToProfileInfo({ name, email, boatLicense, profilePictureUrl }) {
-  return { name, email, boatLicense, profilePictureUrl };
+function userToProfileInfo({
+  _id,
+  name,
+  email,
+  boatLicense,
+  profilePictureUrl,
+}) {
+  return { _id, name, email, boatLicense, profilePictureUrl };
 }
 
 function generateRandomSixDigitCode() {

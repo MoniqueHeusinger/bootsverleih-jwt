@@ -35,8 +35,8 @@ const Register = () => {
         if (!success)
           return setErrorMessage(message || "Registrierung fehlgeschlagen");
         console.log("hier: ", result);
-        setErrorMessage(""); // reset error message after success
-        // setSuccessMessage("Account created, please verify your email!");
+
+        setErrorMessage("");
         navigate("/verify-email/" + result._id);
       });
   };

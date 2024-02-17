@@ -44,7 +44,7 @@ body {
     main {
         display: grid;
         grid-template-columns: 100px auto;
-        // grid-template-rows: 20% 40% 40%;
+        grid-template-rows: 20% 40% 40%;
 
         // Navbar links
         .nav {
@@ -81,7 +81,7 @@ body {
 
             // Content-Überschrift (Dashboard, Bootsübersicht, Reservierungen)
             h2 {
-                margin-top: 80px;
+                //margin-top: 80px;
                 font-family: "Maven-Pro-Bd";
                 font-size: 2.5rem;
                 text-align: center;
