@@ -51,13 +51,15 @@ const Dashboard = ({ authorization, onLogout }) => {
       <section className="content-wrapper">
         <h2>Dashboard</h2>
 
-        <section className="dashboard-card-container">
+        <section className="login-container">
           {authorization && <LogoutButton onLogout={onLogout} />}
           {!authorization ? (
             <Link to="/login" className="btn">
               login
             </Link>
           ) : null}
+        </section>
+        <section className="dashboard-card-container">
           <article className="dashboard-card">
             <h3>
               Aktuelle <br />

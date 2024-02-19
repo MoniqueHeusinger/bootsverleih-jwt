@@ -92,14 +92,11 @@ const VerifyEmail = () => {
 
           <div className="resend-mail-container">
             <p>
-              <span className="bold">
-                Probleme?
-                <br />
-              </span>{" "}
-              Fordere hier einen neuen Code an:
+              <span className="bold">Probleme?</span> Fordere hier einen neuen
+              Code an:
             </p>
             <button className="btn" onClick={resendEmail}>
-              code erneut anfordern
+              neuer code
             </button>
           </div>
         </article>

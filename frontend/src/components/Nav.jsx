@@ -11,24 +11,28 @@ const Nav = () => {
       <section className="nav">
         <nav>
           {/* Home - Dashboard */}
-          <NavLink to="/" className="nav-link-dashboard">
+          <NavLink to="/" className="nav-link-dashboard tooltip">
             <img src={dashboardIcon} alt="Dashboard" />
+            <span className="tooltip-text-small">Dashboard</span>
           </NavLink>
 
           <div className="nav-container-middle">
             {/* User Login */}
-            <NavLink to="/login">
+            <NavLink to="/login" className="tooltip">
               <img src={userIcon} alt="user login" />
+              <span className="tooltip-text">Login</span>
             </NavLink>
 
             {/* Übersicht alle Boote */}
-            <NavLink to="/boatlist">
+            <NavLink to="/boatlist" className="tooltip">
               <img src={bootIcon} alt="Boote" />
+              <span className="tooltip-text">Boote</span>
             </NavLink>
 
             {/* Übersicht alle Reservierungen */}
-            <NavLink to="/reservierungen">
+            <NavLink to="/reservierungen" className="tooltip">
               <img src={reservierungIcon} alt="Reservierungen" />
+              <span className="tooltip-text-small">Reservieren</span>
             </NavLink>
           </div>
         </nav>

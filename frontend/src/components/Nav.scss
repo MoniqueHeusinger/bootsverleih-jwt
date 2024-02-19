@@ -2,8 +2,6 @@ nav {
   margin-top: 20px;
   padding: 50px 10px 0 10px;
   width: 80px;
-  // ===== Fix me: ======
-  // Navbar-Höhe soll immer mind. 100% vom Browserfenster sein - ohne Scrollbalken
   height: 80vh;
   position: sticky;
   top: 0;
@@ -15,6 +13,53 @@ nav {
   background-color: var(--mediumblue);
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
+
+  // Tooltips für Nav-Icons
+  .tooltip {
+    position: relative;
+    display: inline-block;
+
+    &:hover .tooltip-text {
+      visibility: visible;
+    }
+
+    &:hover .tooltip-text-small {
+      visibility: visible;
+    }
+
+    .tooltip-text {
+      visibility: hidden;
+      margin-top: 5px;
+      margin-left: -40px;
+      padding: 5px 0;
+      width: 80px;
+      background-color: rgb(255, 255, 255);
+      color: var(--darkblue);
+      text-align: center;
+      border-radius: 6px;
+      position: absolute;
+      z-index: 100;
+      top: 100%;
+      left: 50%;
+    }
+
+    .tooltip-text-small {
+      visibility: hidden;
+      margin-top: 5px;
+      margin-left: -45px;
+      padding: 5px 0;
+      width: 90px;
+      background-color: rgb(255, 255, 255);
+      font-size: 0.9rem;
+      color: var(--darkblue);
+      text-align: center;
+      border-radius: 6px;
+      position: absolute;
+      z-index: 100;
+      top: 100%;
+      left: 50%;
+    }
+  }
 
   // Navigation - Icons
   // >> Dashboard/Home (Compass)

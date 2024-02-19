@@ -56,32 +56,29 @@ body {
         .header {
             grid-column: 2 / 3;
             grid-row: 1 / 2;
+            display: flex;
 
             h1 {
                 margin: 0 auto;
-                padding: 70px 50px 30px 50px;
-                width: fit-content;
-                height: fit-content;
+                padding: 24px 32px 0 32px;
                 border-bottom: 4px solid var(--mediumblue);
                 font-family: "Pacifico";
                 color: var(--darkblue);
                 font-size: 4rem;
                 text-align: center;
                 letter-spacing: 1px;
-                line-height: 1;
             }
         }
 
-        // Content mittig (Inhalt Dashboard, Inhalt Bootsübersicht, Inhalt Reservierungen)
+        // Content mittig (Inhalt Dashboard, Inhalt Bootsübersicht, Inhalt Reservierungen...)
         .content-wrapper {
             grid-column: 2 / 3;
             grid-row: 2 / 4;
             padding-inline: 50px;
             color: var(--darkblue);
 
-            // Content-Überschrift (Dashboard, Bootsübersicht, Reservierungen)
+            // Content-Überschrift (Dashboard, Bootsübersicht, Reservierungen...)
             h2 {
-                //margin-top: 80px;
                 font-family: "Maven-Pro-Bd";
                 font-size: 2.5rem;
                 text-align: center;
