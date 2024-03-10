@@ -17,7 +17,8 @@ const MONGODB_URL = process.env.MONGODB_URL;
 const PORT = process.env.PORT || 3001;
 const app = express(); // Server aufsetzen
 
-app.use(cors({ origin: [process.env.FRONTEND_URL], credentials: true }));
+// app.use(cors({ origin: [process.env.FRONTEND_URL], credentials: true }));
+app.use(cors());
 app.set("trust proxy", 1); // trust first proxy
 const cookieSessionOptions = {
   name: "session",

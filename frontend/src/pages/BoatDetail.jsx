@@ -175,10 +175,10 @@ const BoatDetail = () => {
             </button>
           </form>
         ) : (
-          <section className="bootDetails-wrapper">
+          <section className="boat-details-wrapper">
             {boot &&
               boot.map((singleBoat, index) => (
-                <article key={index}>
+                <article className="boat-details-grid" key={index}>
                   <img
                     src={
                       singleBoat.bildUrl
@@ -192,9 +192,14 @@ const BoatDetail = () => {
                     <p>Baujahr: {singleBoat.baujahr}</p>
                     <p>SerienNr: {singleBoat.serienNr}</p>
                     <h3>Materialien:</h3>
-                    {singleBoat.material.map((singleMaterial) => (
-                      <p>{singleMaterial}</p>
-                    ))}
+                    <ul>
+                      {singleBoat.material.map((singleMaterial) => (
+                        <li className="boat-material">{singleMaterial}</li>
+                      ))}
+                    </ul>
+                    {/* {singleBoat.material.map((singleMaterial) => (
+                      <p className="boat-material">{singleMaterial}</p>
+                    ))} */}
                     <h4>Bootstyp: {singleBoat.bootsart}</h4>
                   </div>
 
@@ -228,7 +233,7 @@ const BoatDetail = () => {
                     </div>
                   ) : null}
                   <button className="btn" onClick={editBootFunc}>
-                    Boot Infos bearbeiten
+                    Boot Details bearbeiten
                   </button>
                 </article>
               ))}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Nav from "../components/Nav";
 import { useNavigate } from "react-router-dom";
 import { backendUrl } from "../api";
+import "./Register.scss";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -49,24 +50,24 @@ const Register = () => {
         <form className="register-card">
           {/* Name */}
           <div className="register-data-container">
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="name">Vor- und Nachname:</label>
             <input
               type="text"
               name="name"
               id="name"
-              placeholder="Vorname Nachname"
+              placeholder="z.B. Maxi Müller"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
 
           {/* E-Mail */}
           <div className="register-data-container">
-            <label htmlFor="email">E-Mail:</label>
+            <label htmlFor="email">E-Mail-Adresse:</label>
             <input
               type="email"
               name="email"
               id="email"
-              placeholder="E-Mail-Adresse"
+              placeholder="z.B. maxi@example.de"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -96,7 +97,7 @@ const Register = () => {
           </div>
 
           {/* Boat license */}
-          <div className="register-data-container">
+          <div className="register-data-checkbox-container">
             <p>Bootsführerschein vorhanden?</p>
             <input
               type="checkbox"

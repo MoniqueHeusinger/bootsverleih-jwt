@@ -12,6 +12,7 @@ import { useState } from "react";
 import Login from "./pages/Login";
 import LoadingWrapper from "./components/LoadingWrapper";
 import VerifyEmail from "./pages/VerifyEmail";
+import Home from "./pages/Home";
 
 function App() {
   // neu: BasicAuth
@@ -24,20 +25,21 @@ function App() {
         <Header />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            {/* <Route path="/" element={<Dashboard />} /> */}
+            <Route path="/" element={<Home />} />
             <Route
               path="/boatlist"
               element={
-                <LoadingWrapper
-                  authorization={authorization}
-                  saveAuthorization={(auth) => setAuthorization(auth)}
-                >
-                  <Bootsuebersicht
-                    authorization={authorization} // neu: BasicAuth
-                    userProfileInfo={userProfileInfo} // neu: BasicAuth
-                    onLogout={() => setAuthorization(null)} // neu für jwtAuth
-                  />
-                </LoadingWrapper>
+                // <LoadingWrapper
+                //   authorization={authorization}
+                //   saveAuthorization={(auth) => setAuthorization(auth)}
+                // >
+                <Bootsuebersicht
+                  authorization={authorization} // neu: BasicAuth
+                  userProfileInfo={userProfileInfo} // neu: BasicAuth
+                  onLogout={() => setAuthorization(null)} // neu für jwtAuth
+                />
+                // </LoadingWrapper>
               }
             />
             <Route

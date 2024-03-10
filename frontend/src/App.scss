@@ -45,7 +45,7 @@ body {
     main {
         display: grid;
         grid-template-columns: 100px auto;
-        grid-template-rows: 20% 40% 40%;
+        // grid-template-rows: 30% 70%;
 
         // Navbar links
         .nav {
@@ -61,7 +61,8 @@ body {
 
             h1 {
                 margin: 0 auto;
-                padding: 24px 32px 0 32px;
+                padding: 24px 32px;
+                height: fit-content;
                 border-bottom: 4px solid var(--mediumblue);
                 font-family: "Pacifico";
                 color: var(--darkblue);
@@ -130,6 +131,7 @@ body {
                 border-radius: 7px;
                 transition: 0.3s;
                 text-shadow: 1px 1px rgb(110, 110, 110);
+                cursor: pointer;
 
                 &:hover {
                     background-color: var(--darkpink);
@@ -145,7 +147,7 @@ body {
             .btn-icon {
                 margin-right: 10px;
                 width: 40px;
-                box-shadow: 5px 5px 18px -7px rgba(20, 32, 34, 1);
+                // box-shadow: 5px 5px 18px -7px rgba(20, 32, 34, 1);
             }
 
             .btn-register {

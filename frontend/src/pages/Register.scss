@@ -1,0 +1,62 @@
+.register-card {
+    margin: 50px auto 30px auto;
+    padding-block: 40px 20px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
+    border: 6px solid var(--mediumblue);
+    font-size: 1.1rem;
+
+    .register-data-container {
+        margin: 0 auto;
+        width: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        label {
+            font-weight: 900;
+            flex-basis: 200px;
+            text-align: left;
+        }
+
+        input {
+            width: 200px;
+            height: 35px;
+            padding-left: 5px;
+            border: 1px solid var(--mediumblue);
+            border-radius: 5px;
+
+            &::placeholder {
+                font-size: 1rem;
+            }
+
+            &:focus {
+                border: 1px solid var(--mediumblue);
+                outline: none;
+                background-color: var(--mediumblue-transparent);
+            }
+        }
+        input[type="file"] {
+            border: none;
+        }
+    }
+
+    .register-data-checkbox-container {
+        margin: 0 auto;
+        padding-block: 20px;
+        width: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        input {
+            margin-inline: 40px 18px;
+            height: 20px;
+            width: 20px;
+        }
+    }
+}

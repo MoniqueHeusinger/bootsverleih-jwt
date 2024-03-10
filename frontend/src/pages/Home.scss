@@ -1,0 +1,41 @@
+.welcome-container {
+    margin: 0 auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    // grid-template-columns: 400px auto;
+
+    align-items: center;
+    gap: 80px;
+
+    .welcome-text {
+        p {
+            margin-bottom: 24px;
+            text-align: center;
+            font-size: 1.2rem;
+
+            &:nth-of-type(4) {
+                font-family: "Maven-Pro-Bd";
+            }
+
+            span {
+                font-family: "Maven-Pro-Bd";
+            }
+        }
+    }
+
+    .btn-no-login {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .login-container {
+        // margin: 0 auto;
+        max-width: fit-content;
+
+        .btn {
+            margin: 0 auto;
+            display: inline-block;
+        }
+    }
+}

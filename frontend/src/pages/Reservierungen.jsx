@@ -31,7 +31,7 @@ const Reservierungen = (props) => {
         {/* ===== Fix me ======= */}
         {/* Abstände von h2 nach oben und unten weichen von Vorgaben in App.scss ab - Warum???  */}
         <h2>Reservierungen</h2>
-        {/* Button: Weiterleitung zu AddReservierungen */}
+
         {/* ====== Fix me ======
             hier muss noch der Fall eingearbeitet werden, wenn kein Boot vorher ausgewählt wurde (Bootsübersicht). Stattdessen kann man dann hier ein Boot wählen und reservieren */}
         <Link className="btn" to={`/add-reservierung/${props._id}`}>
