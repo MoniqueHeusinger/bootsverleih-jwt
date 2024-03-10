@@ -1,5 +1,6 @@
 .welcome-container {
     margin: 0 auto;
+    padding-top: 40px;
     width: 80%;
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -9,6 +10,7 @@
     gap: 80px;
 
     .welcome-text {
+        text-align: center;
         p {
             margin-bottom: 24px;
             text-align: center;
@@ -25,8 +27,7 @@
     }
 
     .btn-no-login {
-        display: block;
-        margin: 0 auto;
+        display: inline-block;
     }
 
     .login-container {

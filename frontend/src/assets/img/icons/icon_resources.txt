@@ -21,3 +21,6 @@ Trash icon:
 
 Sinking ship/titanic icon:
 <a target="_blank" href="https://icons8.com/icon/ggFFDLkJnPIe/titanic">Titanic</a> Icon von <a target="_blank" href="https://icons8.com">Icons8</a>
+
+img dummy:
+<a target="_blank" href="https://icons8.com/icon/QcJO6lyhsxBi/image">Bild</a> Icon von <a target="_blank" href="https://icons8.com">Icons8</a>

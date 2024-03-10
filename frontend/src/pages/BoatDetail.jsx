@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { backendUrl } from "../api";
 import Nav from "../components/Nav";
 import bootfb from "../assets/img/bootfb.jpeg";
+import imgDummy from "../assets/img/icons/img-dummy.png";
 import "./BootDetail.scss";
 
 const BoatDetail = () => {
   const navigate = useNavigate();
+
   const [boot, setBoot] = useState([]);
   const params = useParams();
   const id = params.bootId;
+  console.log("id: ", id);
   // ---- States für Edit-Boot-Form:
   const [name, setName] = useState("");
   const [baujahr, setBaujahr] = useState("");
@@ -65,45 +68,69 @@ const BoatDetail = () => {
   };
 
   const postEdit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", bildUrl, bildUrl.filename);
+    //  if boat image is set
+    if (bildUrl !== null) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("image", bildUrl, bildUrl.filename);
 
-    fetch(`${backendUrl}/api/files/upload`, {
-      method: "POST",
-      body: formData,
+      fetch(`${backendUrl}/api/files/upload`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then(({ success, result, error, message }) => {
+          if (success) return result.filename;
+          else {
+            console.log({ message });
+            throw error; // jump to catch
+          }
+        })
+        .then((uploadedFilename) =>
+          fetch(`${backendUrl}/api/boote/edit/${id}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+              name,
+              baujahr,
+              serienNr,
+              material,
+              bootsart,
+              bildUrl: uploadedFilename,
+            }),
+            headers: { "Content-Type": "application/json" },
+          })
+            .then((res) => res.json())
+            .then(({ success, result, error, message }) => {
+              console.log({ success, result, error, message });
+              // setEditBoot(false);
+            })
+            .catch((error) => console.log(error))
+        );
+    }
+
+    // no boat image set
+    fetch(`${backendUrl}/api/boote/edit/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        name,
+        baujahr,
+        serienNr,
+        material,
+        bootsart,
+        // bildUrl: uploadedFilename,
+      }),
+      headers: { "Content-Type": "application/json" },
     })
       .then((res) => res.json())
       .then(({ success, result, error, message }) => {
-        if (success) return result.filename;
-        else {
-          console.log({ message });
-          throw error; // jump to catch
-        }
+        console.log({ success, result, error, message });
+        // setEditBoot(false);
       })
-      .then((uploadedFilename) =>
-        fetch(`${backendUrl}/api/boote/edit/${id}`, {
-          method: "PATCH",
-          body: JSON.stringify({
-            name,
-            baujahr,
-            serienNr,
-            material,
-            bootsart,
-            bildUrl: uploadedFilename,
-          }),
-          headers: { "Content-Type": "application/json" },
-        })
-          .then((res) => res.json())
-          .then(({ success, result, error, message }) => {
-            console.log({ success, result, error, message });
-            // setEditBoot(false);
-          })
-          .catch((error) => console.log(error))
-      );
+      .catch((error) => console.log(error));
   };
 
   const backToDetails = () => {
+    setEditBoot(false);
     navigate(`/boat-detail/${id}`);
   };
 
@@ -112,82 +139,128 @@ const BoatDetail = () => {
       <Nav />
       <section className="content-wrapper">
         {boot && editBoot ? (
-          <form>
+          <section className="boat-details-wrapper">
             <h2>Boot bearbeiten: </h2>
-            <div>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              <input
-                type="number"
-                name=""
-                id=""
-                value={baujahr}
-                onChange={(e) => setBaujahr(Number(e.target.value))}
-              />
-              <input
-                type="number"
-                value={serienNr}
-                onChange={(e) => setSerienNr(Number(e.target.value))}
-              />
+            <article className="boat-details-grid">
+              <div className="boat-img-edit">
+                <div>
+                  <img src={imgDummy} alt="" />
+                </div>
 
-              <div>
-                {material?.map((mat, index) => (
-                  <li key={index}>{mat}</li>
-                ))}
-                <label htmlFor="materialien">
-                  Du kannst mit dem "+" button mehrere Materialien hinzufügen
-                </label>
                 <input
-                  type="text"
-                  name="materialien"
-                  id="materialien"
-                  placeholder="Materialien.."
-                  value={singleMaterial}
-                  onChange={(e) => setSingleMaterial(e.target.value)}
+                  type="file"
+                  name=""
+                  id=""
+                  placeholder="Bootsbild..."
+                  onChange={(e) => setBildUrl(e.target.files[0])}
                 />
-                <button onClick={addMaterial}>+</button>
               </div>
-              <input
-                type="text"
-                name=""
-                id=""
-                placeholder="Bootsart..."
-                value={bootsart}
-                onChange={(e) => setBootsart(e.target.value)}
-              />
-              <input
-                type="file"
-                name=""
-                id=""
-                placeholder="Bootsbild..."
-                onChange={(e) => setBildUrl(e.target.files[0])}
-              />
-            </div>
+              <div className="boat-data-edit-container">
+                <form>
+                  <div className="edit-data">
+                    <label htmlFor="name">Bootname:</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
 
-            <button className="btn" onClick={postEdit}>
-              Änderungen posten
-            </button>
-            <button className="btn" onClick={backToDetails}>
-              Zurück zur Detailansicht
-            </button>
-          </form>
+                  <div className="edit-data">
+                    <label htmlFor="baujahr">Bj.:</label>
+                    <input
+                      type="number"
+                      name="baujahr"
+                      id=""
+                      value={baujahr}
+                      onChange={(e) => setBaujahr(Number(e.target.value))}
+                    />
+                  </div>
+
+                  <div className="edit-data">
+                    <label htmlFor="serialNumber">Seriennr.:</label>
+                    <input
+                      type="number"
+                      name="serialNumber"
+                      value={serienNr}
+                      onChange={(e) => setSerienNr(Number(e.target.value))}
+                    />
+                  </div>
+
+                  <div className="edit-material">
+                    <h4>Material:</h4>
+                    <ul>
+                      {material?.map((mat, index) => (
+                        <li key={index}>{mat}</li>
+                      ))}
+                    </ul>
+
+                    <label htmlFor="materialien">
+                      Du kannst mit dem "+" Button <br />
+                      neue Materialien hinzufügen
+                    </label>
+                    <div className="add-material">
+                      <input
+                        type="text"
+                        name="materialien"
+                        id="materialien"
+                        placeholder="z.B. Holz"
+                        value={singleMaterial}
+                        onChange={(e) => setSingleMaterial(e.target.value)}
+                      />
+                      <button className="btn" onClick={addMaterial}>
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="edit-data">
+                    <label htmlFor="boatType">Typ:</label>
+                    <input
+                      type="text"
+                      name="boatType"
+                      id=""
+                      placeholder="Bootsart..."
+                      value={bootsart}
+                      onChange={(e) => setBootsart(e.target.value)}
+                    />
+                  </div>
+                </form>
+              </div>
+              {/* <Link
+                className="btn btn-back-to-details-page"
+                to={`/boat-detail/${id}`}
+              >
+                Zurück zur Detailansicht
+              </Link> */}
+              <button
+                className="btn btn-back-to-details-page"
+                onClick={backToDetails}
+              >
+                Zurück zur Detailansicht
+              </button>
+              <button className="btn btn-post-changes" onClick={postEdit}>
+                Änderungen posten
+              </button>
+            </article>
+          </section>
         ) : (
           <section className="boat-details-wrapper">
             {boot &&
               boot.map((singleBoat, index) => (
                 <article className="boat-details-grid" key={index}>
-                  <img
-                    src={
-                      singleBoat.bildUrl
-                        ? `${backendUrl}/download/${singleBoat.bildUrl}`
-                        : bootfb
-                    }
-                    alt="boot"
-                  />
-                  <div>
+                  <div className="boat-img">
+                    <img
+                      src={
+                        singleBoat.bildUrl
+                          ? `${backendUrl}/download/${singleBoat.bildUrl}`
+                          : bootfb
+                      }
+                      alt="boot"
+                    />
+                  </div>
+
+                  <div className="boat-data-container">
                     <h2>{singleBoat.name}</h2>
                     <p>Baujahr: {singleBoat.baujahr}</p>
                     <p>SerienNr: {singleBoat.serienNr}</p>
