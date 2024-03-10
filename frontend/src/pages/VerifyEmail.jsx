@@ -51,7 +51,7 @@ const VerifyEmail = () => {
       .then(({ success, message }) => {
         if (!success) return setErrorMessage(message || "Resend email failed");
         setErrorMessage(
-          "Die Verifizierungs-E-Mail mit dem 6-stelligen Code wurde dir erneut zugesandt. Bitte prüfe dein E-Mail-Posteingang."
+          "Die Verifizierungs-E-Mail mit dem 6-stelligen Code wurde dir erneut zugesandt. Bitte prüfe deinen E-Mail-Posteingang."
         );
       });
   }
