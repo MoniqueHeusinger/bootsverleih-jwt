@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { backendUrl } from "../api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Nav from "../components/Nav";
 import "./Login.scss";
 import { silentRefreshLoop } from "../utils/tokens.js";
 
 const Login = ({ onLoginSuccess }) => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -20,6 +22,34 @@ const Login = ({ onLoginSuccess }) => {
 
     // const emailAndPasswordBase64 = btoa(`${email}:${password}`); // raus für refreshToken
     //const authorization = `Basic ${emailAndPasswordBase64}`; // hier raus für refreshToken und eingefügt unten in fetch
+
+    // useEffect(() => {
+    //   async function fetchLoginUser() {
+    //     try {
+    //       const loginUser = await fetch(backendUrl + "/api/users/login", {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify({ email, password }),
+    //       });
+    //       const { success, result, message } = await loginUser.json();
+    //       if (!success) return setErrorMessage(message || "❌  Login failed");
+    //       const authorization = `Basic ${result.tokens.accessToken}`;
+    //       onLoginSuccess(authorization, result.user);
+    //       silentRefreshLoop(
+    //         result.tokens.accessToken,
+    //         function onSilentRefreshDoneCallback(newAccessToken) {
+    //           const authorization = `Bearer ${newAccessToken}`;
+    //           onLoginSuccess(authorization, result.user); // update authorization state
+    //         }
+    //       );
+    //       setErrorMessage(""); // reset error message after success
+    //       setSuccessMessage("✅  Login successful!");
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   }
+    //   fetchLoginUser();
+    // }, []);
 
     fetch(backendUrl + "/api/users/login", {
       method: "POST",
@@ -44,6 +74,10 @@ const Login = ({ onLoginSuccess }) => {
 
         setErrorMessage(""); // reset error message after success
         setSuccessMessage("✅  Login successful!");
+
+        setTimeout(() => {
+          navigate("/boatlist");
+        }, 1500);
       });
   };
 

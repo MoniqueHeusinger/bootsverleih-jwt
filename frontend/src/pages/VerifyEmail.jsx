@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { backendUrl } from "../api";
 import Nav from "../components/Nav";
 import "./VerifyEmail.scss";
 
 const VerifyEmail = () => {
+  const navigate = useNavigate();
   const [sixDigitCode, setSixDigitCode] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -33,10 +34,10 @@ const VerifyEmail = () => {
 
         setErrorMessage("");
         setSuccessMessage(
-          "Die Verifizierung deines Kontos war erfolgreich! Du kanns dich jetzt einloggen."
+          "Die Verifizierung deines Kontos war erfolgreich! Du kannst dich jetzt einloggen."
         );
         setTimeout(() => {
-          Navigate("/");
+          navigate("/login");
         }, 5000);
       });
   }
@@ -87,7 +88,7 @@ const VerifyEmail = () => {
             {/* Error Message */}
             <p>{errorMessage}</p>
             {/* Success Message */}
-            <p>{successMessage}</p>
+            <p className="success-message">{successMessage}</p>
           </form>
 
           <div className="resend-mail-container">

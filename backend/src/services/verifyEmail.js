@@ -17,6 +17,7 @@ function userToProfileInfo({
   email,
   boatLicense,
   profilePictureUrl,
+  emailVerified,
 }) {
-  return { _id, name, email, boatLicense, profilePictureUrl };
+  return { _id, name, email, boatLicense, profilePictureUrl, emailVerified };
 }
